@@ -1,0 +1,31 @@
+.btn{
+  box-shadow:inset 0px 1px 0px 0px #fce2c1;
+	background:linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
+	background-color:#ffc477;
+	border-radius:11px;
+	border:2px solid #eeb44f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:16px;
+	font-weight:bold;
+	padding:8px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #cc9f52;  
+}
+.butt:hover {
+	background:linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
+	background-color:#f2a23b;
+}
+.butt:active {
+	position:relative;
+	top:1px;
+}
+
+.grid {
+  margin: 20px 0 0;
+}
+body{
+  background-color: #28282B;
+}
