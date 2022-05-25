@@ -15,7 +15,6 @@ const FINISH_NODE_COL = 10;
 
 const PathFinder = () => {
   const [grid, setGrid] = useState([]);
-  const [mouseIsPressed, setMouseIsPressed] = useState(false);
 
   const getInitialGrid = () => {
     const grid = [];
@@ -122,7 +121,6 @@ const PathFinder = () => {
                         isFinish={isFinish}
                         isStart={isStart}
                         isWall={isWall}
-                        mouseIsPressed={mouseIsPressed}
                         onMouseClick={()=>{handleClick(row,col)}}
                         row={row}>
                         </Node>
