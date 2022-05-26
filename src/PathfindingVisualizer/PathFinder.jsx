@@ -4,18 +4,24 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 
 import './PathfindingVisualizer.css';
 
-//Green Node
+//Green Node // starting
 const START_NODE_ROW = 5;
 const START_NODE_COL = 5;
 
-//Red Node
+//Red Node // ending
 const FINISH_NODE_ROW = 5;
 const FINISH_NODE_COL = 10;
 
-
+// grid is set to global state
+// state is an object that stores the value of a component that could change over the time
+// state is a volitile data that can be change overtime ====>> everytime the state changes the browser rerenders the browser
+// this.setstate() is use to change the value of state object
+//setstate() performs a shallow merge between the new and previous state
+ 
 const PathFinder = () => {
   const [grid, setGrid] = useState([]);
 
+  // initilising the grid ========>> basic 2d array initilisation 
   const getInitialGrid = () => {
     const grid = [];
     for (let row = 0; row < 11; row++) {
@@ -29,6 +35,7 @@ const PathFinder = () => {
     return grid;
   };
   
+  // initilising node 
   const createNode = (col, row) => {
     return {
       col,
