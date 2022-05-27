@@ -5,12 +5,12 @@ import {dijkstra, getNodesInShortestPathOrder} from '../algorithms/dijkstra';
 import './PathfindingVisualizer.css';
 
 //Green Node // starting
-const START_NODE_ROW = 5;
-const START_NODE_COL = 5;
+const START_NODE_ROW = 0;
+const START_NODE_COL = 0;
 
 //Red Node // ending
-const FINISH_NODE_ROW = 5;
-const FINISH_NODE_COL = 10;
+const FINISH_NODE_ROW = 10;
+const FINISH_NODE_COL = 14;
 
 // grid is set to global state
 // state is an object that stores the value of a component that could change over the time
@@ -49,24 +49,29 @@ const PathFinder = () => {
     };
   };
   
+  // checking for the wall ====>> i.e. if the wall is present then reverting it and likewise
   const getNewGridWithWallToggled = (grid, row, col) => {
+    // copying grid into newGrid
     const newGrid = grid.slice();
     const node = newGrid[row][col];
+    // created a new node
     const newNode = {
+      // copied previous node
       ...node,
+      // and changed its state of isWall to true
       isWall: !node.isWall,
     };
     newGrid[row][col] = newNode;
     return newGrid;
   };
   
-  
+  // on starting the project useEffect starts and shows the grid 
   useEffect(() => {
     const grid = getInitialGrid();
     setGrid(grid);
   }, []);
 
-  
+  // fucntion for cliking on the cell i.e. wall toggle intermidiate passing step for gathering information
   function handleClick(row,col){
     const newGrid = getNewGridWithWallToggled(grid, row, col);
     setGrid(newGrid);
@@ -103,18 +108,24 @@ const PathFinder = () => {
     const finishNode = grid[FINISH_NODE_ROW][FINISH_NODE_COL];
 
     //Get relevant information
+    // giving me the visited nodes in order to find the path (visualization: blue color)
     const visitedNodesInOrder = dijkstra(grid, startNode, finishNode);
+    // Giving me the shortest path
     const nodesInShortestPathOrder = getNodesInShortestPathOrder(finishNode);
 
     //Perform visual animation
     animateDijkstra(visitedNodesInOrder, nodesInShortestPathOrder);
   }
+
     return (
+      // wrapper
         <>
           <br /> <br />
+          {/* button to start the visual outcome */}
           <button className='btn' onClick={() => visualizeDijkstra()}>
             Visualize Dijkstra's Algorithm
           </button>
+          {/* .map is use as a foreach loop */}
           <div className="grid">
             {grid.map((row, i) => {
               return (
@@ -128,7 +139,9 @@ const PathFinder = () => {
                         isFinish={isFinish}
                         isStart={isStart}
                         isWall={isWall}
-                        onMouseClick={()=>{handleClick(row,col)}}
+                        // mouse toggle function ====>> wall toggle =====>> handleClick will pick the row and coloumn pass it to 
+                        // getnewgridwithwalltoggle and this function will toggle the wall and return the node
+                        onMouseClick={()=>{handleClick(row,col)}} 
                         row={row}>
                         </Node>
                     );
