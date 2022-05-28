@@ -87,7 +87,7 @@ const PathFinder = () => {
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        document.getElementById(`node-${node.row}-${node.col}`).className =
+        document.getElementjById(`node-${node.row}-${node.col}`).className =
           'node node-visited';
       }, 20 * i);
     }
